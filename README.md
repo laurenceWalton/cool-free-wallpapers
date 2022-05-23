@@ -1,4 +1,4 @@
-# cool-free-wallpaper
+# cool-free-wallpapers
 
 Having discovered that classic oil paintings (specifically Claude Monet, Impressionist style) make the best desktop wallpapers I faced 3 challenges:
 
