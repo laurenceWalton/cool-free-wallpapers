@@ -1,19 +1,37 @@
 # cool-free-wallpapers
 
-Having discovered that classic oil paintings (specifically Claude Monet, Impressionist style) make the best desktop wallpapers I faced 3 challenges:
+Having discovered that old oil paintings make the best desktop wallpapers I had 3 challenges:
 
 1) Where to find high quality images of existing oil paintings
 2) How to automate the downloads (I like to have constantly rotating wallpapers, so need many downloaded)
 3) Which images to download given these are for wallpapers (aspect ratio sensitive)
 
-Luckily the [The Metropolitan Museum of Art Collection API](https://metmuseum.github.io/) allows for this.
+The [The Metropolitan Museum of Art Collection API](https://metmuseum.github.io/) allows for all of this very easily.
 
-## Usage
+## Notes
 
-### WORK IN PROGRESS
+By going [here](https://www.metmuseum.org/art/collection/search?) you can see what images result from given search text, and then use that for your download.
 
-For now modify code to specify the max amount of images to download, the aspect ratio upper and lower bounds, and the parameters for the images.
+User is prompted during runtime for number of images to download, desired search text, and desired MET department. The latter two have default values set to "Monet" and "European Paintings".
 
-The last is most important as obviously you can only view the images once they are downloaded.
+When the objects are retrieved only those which are Open Access and which have the correct aspect ratio are downloaded.
 
-By going [here](https://www.metmuseum.org/art/collection/search?) you can see what images result from given parameters, and then use those same paramters.
+## To Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/laurenceWalton/cool-free-wallpapers
+```
+
+Navigate to project directory
+
+```bash
+  cd cool-free-wallpapers
+```
+
+Run fetch.py
+
+```python
+  python3 fetch.py
+```
