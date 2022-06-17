@@ -42,8 +42,8 @@ print("Working...")
 search = requests.get(BASE_SEARCH_URL, params=SEARCH_PARAMETERS)
 # Convert search result to JSON format. Result is a JSON containing the objectIDs for the search results.
 result = search.json()
-
-print("%s objects found with given parameters." % result["total"])
+i = 0
+print("%s objects found with given parameters. Checking for open access and suitable aspect ratio..." % result["total"])
 if search.status_code == requests.codes.ok and result['total'] > 0:   
     for item in result['objectIDs']:
         # Get object details information.
@@ -68,6 +68,7 @@ if search.status_code == requests.codes.ok and result['total'] > 0:
                         f.write(image.content)
                     print('Downloaded image for object #' + str(item) + '.')
                     DOWNLOAD_LIMIT -= 1
+                    i += 1
 
                     if DOWNLOAD_LIMIT == 0:
                         print("Download limit reached. Exiting.")
@@ -75,6 +76,9 @@ if search.status_code == requests.codes.ok and result['total'] > 0:
                     
         else:
             print("Could not fetch object {0}.".format(item))    
+
+    print("COMPLETE.")
+    print("\nChecked %s objects from search result. \nDownloaded the %d images which passed filters." % (result["total"], i))
 else:
     print("SEARCH URL Error. Exiting.")            
     quit()
