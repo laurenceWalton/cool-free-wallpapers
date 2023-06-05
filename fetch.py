@@ -53,7 +53,7 @@ if search.status_code == requests.codes.ok and result['total'] > 0:
         if object.status_code == requests.codes.ok:
             # API returns {'message': 'Not Found'} if object is not found. Otherwise, it returns the object.
             # i.e. iff object contains key 'message' then fetching object has failed.
-            if not "message" in object_json and "measurements" in object_json and "primaryImage" in object_json and object_json["isPublicDomain"]:
+            if not "message" in object_json and object_json["classification"] == "Paintings" and "measurements" in object_json and "primaryImage" in object_json and object_json["isPublicDomain"]:
                 try:
                     h = object_json['measurements'][0]['elementMeasurements']['Height']
                     w = object_json['measurements'][0]['elementMeasurements']['Width']
@@ -75,7 +75,7 @@ if search.status_code == requests.codes.ok and result['total'] > 0:
                         quit()
                     
         else:
-            print("Could not fetch object {0}.".format(item))    
+            print("Could not fetch object #{0}, continuing.".format(item))    
 
     print("COMPLETE.")
     print("\nChecked %s objects from search result. \nDownloaded the %d images which passed filters." % (result["total"], i))
